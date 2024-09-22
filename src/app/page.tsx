@@ -32,14 +32,13 @@ function App() {
         throw new Error("Invalid input format");
       }
       setError("");
-
       const formData = new FormData();
       formData.append("data", JSON.stringify(parsedInput));
       if (file) {
         formData.append("file", file);
       }
 
-      const apiResponse = await fetch("http://localhost:3001/bfhl", {
+      const apiResponse = await fetch("https://bfhl-express.onrender.com/bfhl", {
         method: "POST",
         body: formData,
       });
@@ -76,10 +75,9 @@ function App() {
     }
   };
 
+
   const renderResponse = () => {
     if (!response) return null;
-
-    console.log("Rendering response:", response);
 
     let filteredResponse: string[] = [];
 
@@ -162,6 +160,8 @@ function App() {
           <div className="mt-4">{renderResponse()}</div>
         </>
       )}
+      <hr className="mt-5" />
+      <h3 className="mt-5">This file input is a feature I created additionally out of curiosity, so please do not enter the file_64 feild in the above text area and upload a file here simultaneuosly and the file information can be seen in the dropdown. Please use them individually, thankyou.</h3>
     </div>
   );
 }
